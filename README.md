@@ -80,3 +80,122 @@ CASE
 END 
 AS People_stage_wise
 FROM worker;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create database saturday;
+use saturday;
+
+create table category(
+c_id int primary key,
+c_name varchar(25) not null unique,
+c_decrp varchar(250) not null
+);
+
+insert into category values (101, 'electronics', 'it stores all set of electronics items');
+select * from category;
+desc category;
+
+CREATE TABLE Products (
+    P_ID int primary key,
+    p_Name varchar(250) NOT NULL,
+    c_id int ,
+    CONSTRAINT c_id FOREIGN KEY (c_id)
+    REFERENCES category(c_id) on delete cascade
+);
+
+insert into products values (904, 'INTEL I5 Processor', 101);
+select * from products;
+delete from category where c_id=101;
+select * from category;
+show database;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE Colleges (
+    college_id INT PRIMARY KEY,
+    college_name VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE Subjects (
+    subject_id INT PRIMARY KEY,
+    subject_name VARCHAR(50) NOT NULL,
+    college_id INT,
+    FOREIGN KEY (college_id) REFERENCES Colleges(college_id)
+);
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50) NOT NULL,
+    college_id INT,
+    subject_id INT,
+    FOREIGN KEY (college_id) REFERENCES Colleges(college_id),
+    FOREIGN KEY (subject_id) REFERENCES Subjects(subject_id)
+);
+
+
+INSERT INTO Colleges (college_id, college_name) VALUES
+    (1, 'vit bhopla'),
+    (2, 'iit bhopal'),
+    (3, 'nit warnagle');
+
+
+INSERT INTO Subjects (subject_id, subject_name, college_id) VALUES
+    (1, 'CS', 1),
+    (2, 'Maths', 1),
+    (3, 'phy', 2),
+    (4, 'EEE', 3);
+
+INSERT INTO Students (student_id, student_name, college_id, subject_id) VALUES
+    (1, 'sdsd', 1, 1),
+    (2, 'Ja', 1, 2),
+    (3, 'Bo', 2, 3),
+    (4, 'Asdsd', 3, 4);
+    
+    SELECT * FROM Colleges;
+SELECT * FROM Subjects;
+SELECT * FROM Students;

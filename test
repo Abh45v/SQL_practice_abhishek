@@ -41,6 +41,21 @@ INSERT INTO Bonus
     (3, 4000, '2016-02-20'),
     (1, 4500, '2016-02-20'),
     (2, 3500, '2016-06-11');
+create table vitBhopal (id int primary key, name varchar(20) not null,
+department varchar(25) not null);
+insert into vitbhopal values (104,'Karthik','cs'),(103,'Arun','cs');
+
+create table vit (id int primary key, name varchar(20) not null,
+college varchar(25) not null);
+insert into vit values (104,'Karthik','chennai'),(103,'Arun','bhopal');
+select * from vit;
+
+select * from vitbhopal;
+
+select name as WinnerOfTheYear from vitbhopal
+where id = (select id from vit where college='bhopal');
+
+
 
 
 
@@ -67,4 +82,23 @@ Question:5) Write an SQL query to show one row twice in results from a table.
 Answer:5)  (SELECT * FROM Worker WHERE WORKER_ID = 1)
             UNION ALL
            (SELECT * FROM Worker WHERE WORKER_ID = 1);
+
+
+
+Question:6) Write an SQL query to fetch the departments that have less than five people in it.
+Answer:5) SELECT DEPARTMENT 
+          FROM Worker 
+          GROUP BY DEPARTMENT 
+          HAVING COUNT(WORKER_ID) < 5;
+
+
+
+Question:7) Write an SQL query to fetch the last five records from a table.
+Answer 7) SELECT * 
+          FROM Worker 
+          ORDER BY WORKER_ID DESC 
+          LIMIT 5;
+
+
+
 

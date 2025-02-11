@@ -60,6 +60,59 @@ where id = (select id from vit where college='bhopal');
 
 
 
+CREATE TABLE student12 (
+    s_id INT PRIMARY KEY,
+    s_name VARCHAR(25) NOT NULL,
+    s_department VARCHAR(25) NOT NULL
+);
+
+
+INSERT INTO student12 VALUES 
+(1001, 'Jayanth', 'ECE'),
+(1002, 'Praveen', 'CSE'),
+(1003, 'Logesh', 'Mech'),
+(1006, 'Karthick', 'Aero'),
+(1007, 'Mahesh', 'Civil');
+
+
+SELECT * FROM student12;
+
+DROP TABLE IF EXISTS vit;
+
+
+CREATE TABLE VIT (
+    s_id INT PRIMARY KEY,
+    s_cgpa VARCHAR(5) NOT NULL
+);
+
+
+INSERT INTO VIT VALUES 
+(1001, '7.2'),
+(1002, '8.6'),
+(1007, '9.25');
+
+SELECT * FROM VIT;
+
+SELECT * FROM  STUDENT CROSS JOIN VIT ;
+
+SELECT * 
+FROM Worker 
+WHERE WORKER_ID IN (SELECT DISTINCT Manager_ID FROM Worker WHERE Manager_ID IS NOT NULL);
+
+
+SELECT W.* 
+FROM Worker W
+INNER JOIN Manager M ON W.WORKER_ID = M.Manager_ID;
+
+
+
+
+
+
+
+
+
+
 Question:1) Write an SQL query to print details of workers excluding first names, “Vipul” and “Satish” from Worker table.
 Answer:1)  SELECT * FROM Worker 
            WHERE FIRST_NAME LIKE '%a';
@@ -98,6 +151,11 @@ Answer 7) SELECT *
           FROM Worker 
           ORDER BY WORKER_ID DESC 
           LIMIT 5;
+Question 8): Write an SQL query to print details of the Workers who are also Managers.
+Answer ): SELECT W.* 
+          FROM Worker W 
+        JOIN Manager M ON W.WORKER_ID = M.WORKER_ID;
+
 
 
 
